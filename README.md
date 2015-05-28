@@ -24,8 +24,8 @@ For the `/stats` route, the json should look like this:
 ## Peer to peer chatter
 
 Write a program `pp` that can connect to N peers (other `pp` processes
-listening on different ports on the same machine, specified as a command line flag on startup)
-to send and receive messages.
+listening on different ports on the same machine, specified as a command line flag on startup
+for each process) to send and receive messages.
 
 The following messages control `pp`:
 
@@ -54,7 +54,7 @@ The response body should be `application/json` in the form
 }
 ```
 
-### `POST /values/{key}/{lock_id}?release={true, false}`_
+### `POST /values/{key}/{lock_id}?release={true, false}`
 
 Set the value of `{key}` to the value given in the `POST` body if `{lock_id}` identifies the currently held lock.
 
