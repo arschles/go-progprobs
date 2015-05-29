@@ -58,7 +58,7 @@ If `{key}` doesn't exist, return `404 Not Found`.
 
 ### `POST /values/{key}/{lock_id}?release={true, false}`
 
-Attempts to set the value of `{key}` to the value given in the `POST` body according to
+Attempt to update the value of `{key}` to the value given in the `POST` body according to
 the following rules:
 
 - If `{key}` doesn't exist, return `404 Not Found`
@@ -67,3 +67,17 @@ the following rules:
 set the new value, release the lock and invalidate `{lock_id}`. Return `204 No Content`
 - If `{key}` exists, `{lock_id}` identifies the currently held lock and `release=false`,
 set the new value but don't release the lock and keep `{lock_id}` value. Return `204 No Content`
+
+### `PUT /values/{key}`
+
+Set the value (in the `PUT` body) of `{key}` and return the new `lock_id` for the
+key/value pair in `application/json` like this:
+
+```json
+{
+  "lock_id": "abc"
+}
+```
+
+If multiple callers race for this call, only one should succeed (the order doesn't matter)
+and the others should behave as `POST /reservations/{key}` does.
