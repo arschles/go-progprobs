@@ -79,5 +79,6 @@ key/value pair in `application/json` like this:
 }
 ```
 
-If multiple callers race for this call, only one should succeed (the order doesn't matter)
-and the others should behave as `POST /reservations/{key}` does.
+On success, return `200 Ok`. If multiple callers race for this call, only one
+should succeed (the order doesn't matter) and the others should immediately fail with
+`401 Unauthorized`
