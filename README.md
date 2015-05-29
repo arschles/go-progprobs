@@ -54,14 +54,16 @@ The response body should be `application/json` in the form
 }
 ```
 
+If `{key}` doesn't exist, return `404 Not Found`.
+
 ### `POST /values/{key}/{lock_id}?release={true, false}`
 
-Set the value of `{key}` to the value given in the `POST` body if `{lock_id}` identifies the currently held lock.
+Attempts to set the value of `{key}` to the value given in the `POST` body according to
+the following rules:
 
-If `{lock_id}` doesn't identify the currently held lock, do no action and respond immediately with `401 Unauthorized`.
-
-Otherwise:
-
-- If `release` was `true`, respond `204 No Content` and release the lock. After the response, `{lock_id}` will be invalid
-- Id release was `false`, respond `204 No Content` but don't release the lock. After the response,
-`{lock_id}` will still be valid
+- If `{key}` doesn't exist, return `404 Not Found`
+- If `{key}` exists but `{lock_id}` doesn't identify the currently held lock, do no action and respond immediately with `401 Unauthorized`.
+- If `{key}` exists, `{lock_id}` identifies the currently held lock and `release=true`,
+set the new value, release the lock and invalidate `{lock_id}`. Return `204 No Content`
+- If `{key}` exists, `{lock_id}` identifies the currently held lock and `release=false`,
+set the new value but don't release the lock and keep `{lock_id}` value. Return `204 No Content`
