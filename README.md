@@ -80,5 +80,5 @@ key/value pair in `application/json` like this:
 ```
 
 On success, return `200 Ok`. If multiple callers race for this call, only one
-should succeed (the order doesn't matter) and the others should immediately fail with
-`401 Unauthorized`
+should succeed (the order doesn't matter) and the rest should wait as `POST /reservations/{key}`
+does.
