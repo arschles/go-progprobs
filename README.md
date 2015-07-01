@@ -45,7 +45,7 @@ locked by a user. It should have the following endpoints:
 
 Wait for `{key}` to be available, then acquire a lock on it (and its value).
 Return the value of `{key}` along with a unique lock ID that the caller can use in later calls.
-The response body should be `application/json` in the form
+The response body should be `application/json` in the form:
 
 ```json
 {
@@ -70,8 +70,11 @@ set the new value but don't release the lock and keep `{lock_id}` value. Return 
 
 ### `PUT /values/{key}`
 
-Set the value (in the `PUT` body) of `{key}` and return the new `lock_id` for the
-key/value pair in `application/json` like this:
+If `{key}` already exists, wait until it's available then acquire the lock on it. If it doesn't already exist, create it and immediately acquire the lock on it (that operation should never block).
+
+Once the lock is acquired and the key exists, set the key's value to the data in the `PUT` body regardless of whether it existed before.
+
+In both cases, return the new lock ID like this:
 
 ```json
 {
@@ -79,6 +82,4 @@ key/value pair in `application/json` like this:
 }
 ```
 
-On success, return `200 Ok`. If multiple callers race for this call, only one
-should succeed (the order doesn't matter) and the rest should wait as `POST /reservations/{key}`
-does.
+This endpoint should always succeed and return `200 Ok`.
