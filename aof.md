@@ -7,7 +7,7 @@ are suspended or in the background).
 
 ## The append-only file format
 
-The append-only file (AOF) has a *header* and *entries*.
+For this exercise, the append-only file (AOF) has a *header* and *entries*.
 
 ### Header
 
