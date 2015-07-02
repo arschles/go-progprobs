@@ -11,7 +11,7 @@ For this exercise, the append-only file (AOF) has a *header* and *entries*.
 
 ### Header
 
-The header starts at the beginning of the file. The first line of the header
+The header appears at the beginning of the AOF. The first line of the header
 is an integer that represents the number of lines in the header (not including that line itself).
 The remaining lines map each key to the last line in the entries that mentions it.
 
