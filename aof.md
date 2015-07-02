@@ -24,7 +24,7 @@ key5 10
 ```
 
 This header indicates `key1` is mentioned last on line 5 of the entries, `key2` is mentioned last
-on line 3, and `key5` last mentioned on line 10.
+on line 3, and `key5` last mentioned on line 10. Lines start at 0.
 
 ### Entries
 
@@ -56,17 +56,17 @@ For example, with an input `aof` file that looks like this:
 
 ```
 4
-key1 4
-key2 2
-key3 9
-key4 5
+key1 5
+key2 3
+key3 8
+key4 6
 CREATE key1 val1
 CREATE key2 val2
 CREATE key3 val3
-MODIFY key1 val11
+MODIFY key2 val21
 CREATE key4 val4
-MODIFY key3 val31
-MODIFY key3 val32
+MODIFY key1 val11
+MODIFY key4 val41
 MODIFY key3 val33
 DELETE key3 val34
 ```
