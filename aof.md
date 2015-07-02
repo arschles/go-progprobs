@@ -11,8 +11,9 @@ The append-only file (AOF) has a *header* and *entries*.
 
 ### Header
 
-The header starts at the beginning of the file. The first line is an integer that represents the number of lines in the header
-(not including that line itself), and the remaining lines represent a simple map.
+The header starts at the beginning of the file. The first line of the header
+is an integer that represents the number of lines in the header (not including that line itself).
+The remaining lines map each key to the last line in the entries that mentions it.
 
 Here's a complete header:
 
@@ -24,11 +25,11 @@ key5 10
 ```
 
 This header indicates `key1` is mentioned last on line 5 of the entries, `key2` is mentioned last
-on line 3, and `key5` last mentioned on line 10. Lines start at 0.
+on line 3, and `key5` last mentioned on line 10. Line numbers at 0 - the first entry.
 
 ### Entries
 
-The entries describe actions performed on keys. The possible actions are:
+The entries describe actions to perform on keys. The possible actions are:
 
 - `CREATE ${key} ${value}` - create the given key with the given value
 - `MODIFY ${key} ${value}` - change the given key to the given value
@@ -42,17 +43,17 @@ In this exercise, all input AOFs are guaranteed to follow these rules:
 
 ## The compactor program
 
-To prevent the file from growing to infinity, databases that use AOFs periodically
-do *compactions* on the files. A compaction is a checkpointing operation that scans
-the AOF (or a portion of the AOF) and combine all operations on each key into one command.
+To prevent the file from growing unbounded over time, databases that use AOFs periodically
+do *compactions* on the files. A compaction scans the AOF (or a portion of the AOF) and
+combines all operations on each key into one command.
 
 Write a program called `aofcompactor` that reads a file called `aof` (in the current working directory)
-and outputs either a `CREATE ${key} ${value}` or a `DELETE ${key}` to `STDOUT` immediately
-after the key has been compacted.
+and outputs either a `CREATE ${key} ${value}` or a `DELETE ${key}` to `STDOUT` *immediately
+after the key has been compacted*.
 
-(Note - the `DELETE`s aren't technically necessary in many cases, but are useful when replicating the data to another AOF)
+(Note: the `DELETE`s aren't technically necessary in many cases, but are useful when replicating the data to another AOF)
 
-For example, with an input `aof` file that looks like this:
+For example, given this input `aof` file:
 
 ```
 4
@@ -82,5 +83,5 @@ DELETE key3 val34
 
 Finally, `aofcompactor` must follow these rules:
 
-1. Read the file one line at a time. That means, for example, that you can't use Go's `ioutil.ReadAll` function
+1. Read the file one line at a time (don't, for example, use Go's `ioutil.ReadAll` function)
 2. Don't re-read any line in the file
