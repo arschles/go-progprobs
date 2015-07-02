@@ -1,6 +1,6 @@
 # Append-only file compaction
 
-Some modern on-disk databases store data in files that they *only* append to when
+Some databases store data in files that they *only* append to when
 they write data. Each entry in the file is never modified after it's appended,
 but may be deleted after a *compaction* operation is done (usually while writes
 are suspended or in the background).
