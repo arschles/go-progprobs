@@ -50,7 +50,7 @@ Write a program called `aofcompactor` that reads a file called `aof` (in the cur
 and outputs either a `CREATE ${key} ${value}` or a `DELETE ${key}` to `STDOUT` *immediately
 after the key has been compacted*.
 
-(Note: the `DELETE`s aren't technically necessary in many cases, but are useful when replicating the data to another AOF)
+(Note: the `DELETE`s aren't technically necessary but they're useful when replicating the data to another AOF)
 
 For example, given this input `aof` file:
 
