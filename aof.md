@@ -25,7 +25,7 @@ key5 10
 ```
 
 This header indicates `key1` is mentioned last on line 5 of the entries, `key2` is mentioned last
-on line 3, and `key5` last mentioned on line 10. Line numbers at 0 - the first entry.
+on line 3, and `key5` last mentioned on line 10. Line numbers start at 0 - the first entry.
 
 ### Entries
 
