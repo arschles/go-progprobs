@@ -30,8 +30,9 @@ on line 3, and `key5` last mentioned on line 10. Line numbers start at 0 - the f
 
 The entries describe actions to perform on keys. The possible actions are:
 
-- `CREATE ${key} ${value}` - create the given key with the given value
-- `MODIFY ${key} ${value}` - change the given key to the given value
+- `CREATE ${key} ${value}` - create the given key with the given value. Values can only be integers
+- `SET ${key} ${value}` - set the given key to the given value
+- `MODIFY ${key} ${+/-} ${value}` - modify the key by adding or subtracting the given value
 - `DELETE ${key}` - delete the given key and its value
 
 In this exercise, all input AOFs are guaranteed to follow these rules:
@@ -39,6 +40,7 @@ In this exercise, all input AOFs are guaranteed to follow these rules:
 - No key will be `CREATE`d if it currently exists
 - No key will be `DELETE`d if it doesn't currently exist
 - No key will be `MODIFY`-ed if it doesn't currently exist
+- No key will be `SET` if it doesn't currently exist
 
 ## The compactor program
 
