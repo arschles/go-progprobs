@@ -41,6 +41,7 @@ In this exercise, all input AOFs are guaranteed to follow these rules:
 - No key will be `DELETE`d if it doesn't currently exist
 - No key will be `MODIFY`-ed if it doesn't currently exist
 - No key will be `SET` if it doesn't currently exist
+- All lines will be well formed (e.g. no `CREATE ${key}` with no value)
 
 ## The compactor program
 
