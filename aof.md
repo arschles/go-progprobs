@@ -62,24 +62,24 @@ key1 5
 key2 3
 key3 8
 key4 6
-CREATE key1 val1
-CREATE key2 val2
-CREATE key3 val3
-MODIFY key2 val21
-CREATE key4 val4
-MODIFY key1 val11
-MODIFY key4 val41
-MODIFY key3 val33
-DELETE key3 val34
+CREATE key1 1
+CREATE key2 2
+CREATE key3 3
+MODIFY key2 +21
+CREATE key4 4
+MODIFY key1 +11
+MODIFY key4 +41
+MODIFY key3 +33
+DELETE key3
 ```
 
 `aofcompactor` should stream the following to `STDOUT`:
 
 ```
-CREATE key2 val2
-CREATE key1 val11
-CREATE key4 val4
-DELETE key3 val34
+CREATE key2 23
+CREATE key1 12
+CREATE key4 45
+DELETE key3
 ```
 
 Finally, `aofcompactor` must follow these rules:
