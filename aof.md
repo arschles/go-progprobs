@@ -45,7 +45,7 @@ In this exercise, all input AOFs are guaranteed to follow these rules:
   - No line will exist without a key
   - No `CREATE`, `SET` or `MODIFY` will exist without a value
   - No `MODIFY` will exist without a `+` or `-` immediately before the value
-  - All `${value}` entries will be valid integers
+  - All `${value}` entries will be valid integers (they might be negative, though)
 
 ## The compactor program
 
