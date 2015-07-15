@@ -32,7 +32,7 @@ The entries describe actions to perform on keys. The possible actions are:
 
 - `CREATE ${key} ${value}` - create the given key with the given value. Values can only be integers
 - `SET ${key} ${value}` - set the given key to the given value
-- `MODIFY ${key} ${+/-} ${value}` - modify the key by adding or subtracting the given value
+- `MODIFY ${key} ${+/-}${value}` - modify the key by adding or subtracting the given value
 - `DELETE ${key}` - delete the given key and its value
 
 In this exercise, all input AOFs are guaranteed to follow these rules:
