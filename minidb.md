@@ -1,7 +1,7 @@
 # Mini database
 
 Write an HTTP server that implements an in-memory key/value store where each key/value can be
-locked by a single user at a time (i.e. the lock is a mutex). Each lock is identified
+locked by a single user at a time (i.e. the lock provides mutual exclusion). Each lock is identified
 by a lock ID, which the user with the lock uses to identify ownership of it.
 
 Operations on the mini database are done via HTTP calls. Below are the endpoints.
