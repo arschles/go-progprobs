@@ -41,6 +41,7 @@ In this exercise, all input AOFs are guaranteed to follow these rules:
 - No key will be `DELETE`d if it doesn't currently exist
 - No key will be `MODIFY`-ed if it doesn't currently exist
 - No key will be `SET` if it doesn't currently exist
+- The `${value}` in `MODIFY` commands will not be negative itself (its prefix might be though)
 - All lines will be well formed. Examples:
   - No line will exist without a key
   - No `CREATE`, `SET` or `MODIFY` will exist without a value
