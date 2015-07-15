@@ -33,7 +33,7 @@ the following rules:
 - If `{key}` exists, `{lock_id}` identifies the currently held lock and `release=true`,
 set the new value, release the lock and invalidate `{lock_id}`. Return `204 No Content`
 - If `{key}` exists, `{lock_id}` identifies the currently held lock and `release=false`,
-set the new value but don't release the lock and keep `{lock_id}` value. Return `204 No Content`
+set the new value but don't release the lock and keep `{lock_id}` valid. Return `204 No Content`
 
 This call should never wait.
 
